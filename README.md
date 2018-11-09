@@ -20,8 +20,9 @@ task 针对HTTP及Websocket会返回不同对象。
         Websocket对象已提供 send/close 两个方法，以便发送数据和关闭连接；
         Websocket对象同时提供 onWsMessage/onClose 两个回调函数以便接受数据和获取关闭消息；
 
-
-
+    enOperation     参考HPSocket关于onClose的说明
+    errCode         参考HPSocket关于onClose的说明
+    existWebSocket  当存在同一个URL的websocket时，此参数为true时表明对象是复用的，即httpAgent并没有为连接创建新的WebSocket对象。
 
 由于Aardio的HP-Socket库自身的问题：
 1.使用本库前请更新 hpsocket.socket.httpAgent 库，以便 Websocket 完成协议切换。
