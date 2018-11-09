@@ -1,0 +1,19 @@
+﻿
+namespace httpAgent;
+
+class websocketTask{
+	ctor( socket,connId,url){
+		this.socket = socket;
+		this.connId = connId;
+		this.url = url;
+		this.connected = true;
+	};
+	close = function(){
+		this.socket.disconnect(this.connId);
+		this.connected = false;
+	}
+	send = function(...){
+		if (!this.connected) return false; 
+		return this.socket.sendWsMessage(this.connId,...)
+	}
+}
