@@ -161,7 +161,7 @@ var updateLine = function(data,columnlist){
 winform.connectBtn.oncommand = function(id,event){
 	var url = winform.url.text;
 
-	if (!#url) return win.msgbox("请输入网址","请求错误",0x40/*_MB_ICONINFORMATION*/,winform); 
+	if (!#url) return win.msgbox("请输入网址","请求错误",0x40/*_MB_ICONINFORMATION*/,winform.hwnd); 
 	
 	var guid,task = winform.client.getRequest(url,winform.onUpgrade,,,,true);
 	var index = websocketList.add(url,guid)
