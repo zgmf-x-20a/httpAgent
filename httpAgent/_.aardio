@@ -259,6 +259,11 @@ namespace httpAgent{
 	    	this.statue			= statue;
 	    	this.cookies		= (cookies=="")?this.headers.get("set-cookie");
 	    	this.body			= (..raw.sizeof(pData))?(..raw.tostring(pData,1,..raw.sizeof(pData))):null;
+	    	
+	    	var encoding = this.headers.get("content-encoding");
+	    	if encoding == "gzip" {
+	    		this.body = ..hpsocket.gzip.uncompress(this.body)
+	    	}
     	};
 	}
 	
