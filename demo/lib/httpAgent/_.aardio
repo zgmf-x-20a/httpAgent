@@ -1,6 +1,7 @@
 ﻿import hpsocket.ssl.httpAgent;
 import hpsocket.httpAgent;
 import hpsocket.helper.headers;
+import hpsocket.gzip;
 import thread.table;
 import inet.url;
 import win.ui;
@@ -263,7 +264,7 @@ namespace httpAgent{
 	    	this.headers		= ..hpsocket.helper.headers(header);
 	    	this.contentLength	= this.headers.get("contentlength");
 	    	this.statue			= statue;
-	    	this.cookies		= (cookies=="")?this.headers.get("set-cookie");
+	    	this.cookies		= this.headers.get("set-cookie");
 	    	this.body			= (..raw.sizeof(pData))?(..raw.tostring(pData,1,..raw.sizeof(pData))):null;
 	    	
 	    	var encoding = this.headers.get("content-encoding");
