@@ -1,6 +1,7 @@
 ﻿import hpsocket.ssl.httpAgent;
 import hpsocket.httpAgent;
 import hpsocket.helper.headers;
+import hpsocket.gzip;
 import thread.table;
 import inet.url;
 import win.ui;
