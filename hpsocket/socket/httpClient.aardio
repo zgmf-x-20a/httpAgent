@@ -214,6 +214,15 @@ class httpClient{
 				}
 			}
 	};
+	startHttp = function(){
+		return ::HPSocket.HP_HttpClient_StartHttp(this.pSocket);
+	}
+	setHttpAutoStart = function(bAutoStart){
+		::HPSocket.HP_HttpClient_SetHttpAutoStart(this.pSocket,bAutoStart)
+	}
+	isHttpAutoStart = function(){
+		return ::HPSocket.HP_HttpClient_IsHttpAutoStart(this.pSocket); 
+	}
 }
   
 namespace httpClient{

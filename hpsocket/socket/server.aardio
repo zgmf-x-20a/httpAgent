@@ -114,4 +114,16 @@ class server{
 	sslCleanup = function(){
 		return !!::HPSocket.HP_SSLServer_CleanupSSLContext(owner.pSocket);
 	}
+	sslStartHandShake = function(connId){
+		return !!::HPSocket.HP_SSLServer_StartSSLHandShake(this.pSocket,connId);
+	}
+	sslSetAutoHandShake = function(bAutoStart){
+		::HPSocket.HP_SSLServer_SetSSLAutoHandShake(this.pSocket,bAutoStart)
+	}
+	sslIsAutoHandShake = function(){
+		return !!::HPSocket.HP_SSLServer_IsSSLAutoHandShake(this.pSocket); 
+	}
+	isConnected = function(connId){
+		return !!HPSocket.HP_Server_IsConnected(this.pSocket,connId); 
+	}
  }

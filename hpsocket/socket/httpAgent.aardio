@@ -203,6 +203,15 @@ class httpAgent{
 				}
 			}
 	};
+	startHttp = function(connId){
+		return ::HPSocket.HP_HttpAgent_StartHttp(this.pSocket,connId);
+	}
+	setHttpAutoStart = function(bAutoStart){
+		::HPSocket.HP_HttpAgent_SetHttpAutoStart(this.pSocket,bAutoStart)
+	}
+	isHttpAutoStart = function(){
+		return ::HPSocket.HP_HttpAgent_IsHttpAutoStart(this.pSocket); 
+	}
 }
 
 namespace httpAgent{

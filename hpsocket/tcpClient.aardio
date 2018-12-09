@@ -60,6 +60,11 @@ setKeepAliveInterval = 设置异常心跳包间隔\n毫秒，0 不发送心跳�
 getKeepAliveInterval = 获取异常心跳包间隔
 sslSetupContext(.(mode,certFile,keyFile,password,ca) = 初始化通信组件 SSL 环境参数\n仅SSL组件支持此函数接口
 sslCleanup() = 清理通信组件 SSL 运行环境\n仅SSL组件支持此函数接口
+sslStartHandShake() = 手工启动 SSL 握手\n当通信组件设置为非自动握手时，需要调用本方法启动 SSL 握手
+sslSetAutoHandShake(.(bAutoStart) = 设置通信组件握手方式（默认：TRUE，自动握手）
+sslIsAutoHandShake() = 获取通信组件握手方式
+startWithLocalPort(.("ip",端口,是否异步连接，本地端口) = 连接时绑定本地端口
+isConnected() = 返回连接是否是有效连接
 threadGlobal = @.threadGlobal = {\n    winform = winform;\n    __/*添加变量到监听线程全局名字空间*/\n}
 onThreadCreated = @.onThreadCreated = function(){
 	__/*监听线程首次回调前触发*/

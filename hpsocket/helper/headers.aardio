@@ -85,7 +85,7 @@ class headers{
 		for(i=#hdrs;1;-1){  
 			if(hdrs[i].name == k ) ..table.push(values,hdrs[i].value);
 		}
-		if(#value<=1)return ..table.unpack(values);
+		if(#values<=1)return ..table.unpack(values);
 		return values;
 	}
 	headers = function(){

@@ -186,6 +186,15 @@ class httpServer{
 		headers = ..hpsocket.helper.headers(headers)
 		return 	::HPSocket.HP_HttpServer_SendLocalFile(this.pSocket,connId,..io.fullpath(filename),statusCode:200,desc,headers,headers.length());
 	}
+	startHttp = function(connId){
+		return ::HPSocket.HP_HttpServer_StartHttp(this.pSocket,connId);
+	}
+	setHttpAutoStart = function(bAutoStart){
+		::HPSocket.HP_HttpServer_SetHttpAutoStart(this.pSocket,bAutoStart)
+	}
+	isHttpAutoStart = function(){
+		return ::HPSocket.HP_HttpServer_IsHttpAutoStart(this.pSocket); 
+	}
 }
 
 namespace httpServer{

@@ -110,5 +110,22 @@ class agent{
 	sslCleanup = function(){
 		return !!::HPSocket.HP_SSLAgent_CleanupSSLContext(owner.pSocket);
 	}
+	sslStartHandShake = function(connId){
+		return ::HPSocket.HP_SSLAgent_StartSSLHandShake(this.pSocket,connId);
+	}
+	sslSetAutoHandShake = function(bAutoStart){
+		::HPSocket.HP_SSLAgent_SetSSLAutoHandShake(this.pSocket,bAutoStart)
+	}
+	sslIsAutoHandShake = function(){
+		return ::HPSocket.HP_SSLAgent_IsSSLAutoHandShake(this.pSocket); 
+	}
+	connectWithLocalPort = function(ip,port,localport){
+		var connId = {ADDR value}
+		if( ::HPSocket.HP_Agent_ConnectWHP_Agent_ConnectWithLocalPortW(this.pSocket,ip,port,connId,localport) )
+			return connId.value;
+	}
+	isConnected = function(connId){
+		return !!HPSocket.HP_Agent_IsConnected(this.pSocket,connId); 
+	}
  }
        

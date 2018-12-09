@@ -105,6 +105,9 @@ getString(connId) = 从指定连接绑定的动态指针中获取appendString函
 sslSetupContext(.(mode,certFile,keyFile,password,ca) = 初始化通信组件 SSL 环境参数\n仅SSL组件支持此函数接口
 sslAddContext(.(mode,certFile,keyFile,password,ca) = 增加 SNI 主机证书\n仅SSL组件支持此函数接口
 sslCleanup() = 清理通信组件 SSL 运行环境\n仅SSL组件支持此函数接口
+startHttp(.(connId) = 手工启动 HTTP 通信，当通信组件设置为非自动启动时，需要调用本方法启动 HTTP 通信
+setHttpAutoStart(.(bAutoStart) = 设置 HTTP 通信启动方式（默认：TRUE，自动启动）
+isHttpAutoStart() = 获取 HTTP 通信启动方式
 threadGlobal = @.threadGlobal = {\n    winform = winform;\n    __/*添加变量到监听线程全局名字空间*/\n}
 onThreadCreated = @.onThreadCreated = function(){
 	__/*监听线程首次回调前触发*/

@@ -81,5 +81,21 @@ class client{
 	sslCleanup = function(){
 		return !!::HPSocket.HP_SSLClient_CleanupSSLContext(owner.pSocket);
 	}
+	sslStartHandShake = function(){
+		return !!::HPSocket.HP_SSLClient_StartSSLHandShake(this.pSocket);
+	}
+	sslSetAutoHandShake = function(bAutoStart){
+		::HPSocket.HP_SSLClient_SetSSLAutoHandShake(this.pSocket,bAutoStart)
+	}
+	sslIsAutoHandShake = function(){
+		return !!::HPSocket.HP_SSLClient_IsSSLAutoHandShake(this.pSocket); 
+	}
+	startWithLocalPort = function(ip,port,bAsyncConnect,localport){
+		if(ip=="localhost") ip="127.0.0.1";
+		return !!::HPSocket.HP_Client_StartWithBindAddressAndLocalPortW(this.pSocket,ip,port,bAsyncConnect===null? true :bAsyncConnect,null,localport)
+	}
+	isConnected = function(){
+		return !!HPSocket.HP_Client_IsConnected(this.pSocket); 
+	}
  }
        

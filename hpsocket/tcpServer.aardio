@@ -80,6 +80,10 @@ getString(connId) = 从指定连接绑定的动态指针中获取appendString函
 sslSetupContext(.(mode,certFile,keyFile,password,ca) = 初始化通信组件 SSL 环境参数\n仅SSL组件支持此函数接口
 sslAddContext(.(mode,certFile,keyFile,password,ca) = 增加 SNI 主机证书\n仅SSL组件支持此函数接口
 sslCleanup() = 清理通信组件 SSL 运行环境\n仅SSL组件支持此函数接口
+sslStartHandShake(.(connId) = 手工启动 SSL 握手\n当通信组件设置为非自动握手时，需要调用本方法启动 SSL 握手
+sslSetAutoHandShake(.(bAutoStart) = 设置通信组件握手方式（默认：TRUE，自动握手）
+sslIsAutoHandShake() = 获取通信组件握手方式
+isConnected(.(connId) = 返回连接是否是有效连接
 threadGlobal = @.threadGlobal = {\n    winform = winform;\n    __/*添加变量到监听线程全局名字空间*/\n}
 onThreadCreated = @.onThreadCreated = function(){
 	__/*监听线程首次回调前触发*/

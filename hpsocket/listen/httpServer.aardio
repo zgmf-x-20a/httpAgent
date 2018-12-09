@@ -5,7 +5,7 @@ namespace hpsocket.listen;
 class httpServer{
 	ctor( pListener,className ){
 		this = ..hpsocket.listen(pListener,className);
-		::HPSocket.HP_Set_FN_HttpServer_OnWorkerThreadEnd(this.pListener,..thread.callbackUninitialize );
+		//::HPSocket.HP_Set_FN_HttpServer_OnWorkerThreadEnd(this.pListener,..thread.callbackUninitialize );
 	};
 	@_metaProperty;
 }

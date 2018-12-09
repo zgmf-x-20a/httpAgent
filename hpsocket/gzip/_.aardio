@@ -13,7 +13,7 @@ compress = function(str,len){
 
 uncompress = function(str){
 	var len = ::HPSocket.SYS_GZipGuessUncompressBound(str,#str);
-	..console.log("len",len)
+	//..console.log("len",len)
 	if(!len) return;
 	
 	var buf = ..raw.malloc(len)
