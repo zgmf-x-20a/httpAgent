@@ -59,7 +59,7 @@ class httpAgent{
 		this.thdTable 			= ..thread.table(helper.version)
 		this.thdTable.msgHwnd 	= this._form.hwnd;
 		
-		this.connHelper 		= connIdHelper(this.socket,this.socket_ssl,5);
+		this.connHelper 		= connIdHelper(this.socket,this.socket_ssl,20);
 		this.taskHelper 		= taskHelper(this.connHelper);
 		this.websocketHelper 	= websocketHelper();
 		/*Processor{{*/
@@ -114,7 +114,7 @@ class httpAgent{
 					var method,url,header,body,isWebSocket = this.connHelper.onCallBack("onHandShake",isSSLSocket,connId)
 					
 					var requestHeaders =  ..hpsocket.helper.headers(this.connHelper.getHttpHeader(url).headers());
-					requestHeaders.mix(header.headers());
+					if (header) requestHeaders.mix(header.headers());
 
 					if (url.uri) {
 						if (isWebSocket){
@@ -195,7 +195,7 @@ class httpAgent{
 		}
 		/*}}*/
 	};
-	getRequest = function(path,onResponse,header,method,body,newWS){//兼容ws协议
+	getRequest = function(path,onResponse,header,method,body,newWS,delay){//兼容ws协议
 		var url = crackURL(path);
 		if !url return null; 
 		if url.ws && (!newWS) { //当是websocket协议的时候，需要检查是否存在现成的链接
@@ -205,7 +205,7 @@ class httpAgent{
 				return true,wsTask; 
 			}
 		}
-		return this.taskHelper.addRequest(url,onResponse,header,method,body) //返回GUID，Task，执行计数
+		return this.taskHelper.addRequest(url,onResponse,header,method,body,delay) //返回GUID，Task，执行计数
 	}
 	isSSLSocket = function(pSocket){
 		var pSocket = topointer(pSocket);

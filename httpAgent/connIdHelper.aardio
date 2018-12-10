@@ -108,7 +108,10 @@ class connIdHelper{//管理连接池
 		select(message) {
 			case "onClose" 	{
 				if (server) server.destoryConnId(connId);
-				if (task) call(task.onClose,,...)
+				if (task) call(task.onClose,task,...);
+				
+				this.connIdList.freeTask(isSSL,connId);//解除绑定
+				this.connIdList.freeServer(isSSL,connId);;//解除绑定
 			}
 			case "onConnect","onSend","onReceive","onBody" {
 				if (task) {	
@@ -123,7 +126,12 @@ class connIdHelper{//管理连接池
 				if ((server) && ((task?(!task.isWS):true))){
 					server.freeConnId(connId);
 				}
-				if (task) task.onComplete(...)
+				//只解除Task绑定，有可能后续会有Server的onClose事件
+				this.connIdList.freeTask(isSSL,connId);
+				
+				if (task) {
+					task.onComplete(...);
+				}
 			}
 			case "onUpgrade" {
 				if (server) server.upgradeConnId(connId,...)

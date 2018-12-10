@@ -25,12 +25,12 @@ class taskHelper {
 		this.completeCallBack = null;
 		this.completeShowUp = true;
 	}
-	addTask = function(task){
+	addTask = function(task,delay){
 		this.completeShowUp = false;
 		owner.queue.add(task);
-		return owner.nextStep();
+		if (!delay) return owner.nextStep();
 	}
-	addRequest = function(url,onResponse,header,method,body){
+	addRequest = function(url,onResponse,header,method,body,delay){
 		var task = ..httpAgent.taskData(url,onResponse,header,method,body);
 		
 		//判断当onResponse是Table并包含多值时,重新建立回调函数的关系
@@ -46,12 +46,12 @@ class taskHelper {
 			}
 		}
 		
-		return task.guid, task, owner.addTask(task);
+		return task.guid, task, owner.addTask(task,delay);
 	}
 	setComplete = function(func){//允许为null，即取消
 		this.completeCallBack = func;
 	}
-	nextStep = function(){//检查新任务,返回成功任务数;
+	nextStep = function(maxCount = 1){//检查新任务,返回成功任务数;
 		var task;
 		var count = 0;
 		
@@ -78,7 +78,7 @@ class taskHelper {
 					var taskHeaders =  owner.connIdHelper.getHttpHeader(url)
 					
 					var requestHeaders =  ..hpsocket.helper.headers(taskHeaders.headers());
-					requestHeaders.mix(header.headers());	
+					if (header) requestHeaders.mix(header.headers());	
 				
 					if (isWebSocket){
 						server.socket.sendWsUpgradeRequest(connId,url.uri,requestHeaders)
@@ -88,6 +88,7 @@ class taskHelper {
 					}
 				}
 				count += 1;
+				if (count >= maxCount) break ;
 			}
 			else {
 				var err = isNewOrError;

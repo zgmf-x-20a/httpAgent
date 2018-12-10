@@ -2,10 +2,11 @@
 namespace httpAgent;
 
 class websocketTask{
-	ctor( socket,connId,url){
+	ctor( socket,connId,task){
 		this.socket = socket;
 		this.connId = connId;
-		this.url = url;
+		this.url = task.url;
+		this.task = task;
 		this.connected = true;
 	};
 	close = function(){
