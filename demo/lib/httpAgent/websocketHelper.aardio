@@ -54,7 +54,7 @@ class websocketHelper{
 		if (!task) return null; 
 		
 		if (task.onClose){ task.onClose(enOperation,errCode) };
-		owner.closeConnId(connId);
+		owner.closeConnId(isSSL,connId);
 	}
 	closeConnId = function(isSSL,connId){
 		owner.connIdList.destory(isSSL,connId);
